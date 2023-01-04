@@ -8,15 +8,6 @@ def isint(a):
      except:
           return False
 
-def questions(element, element1, window):
-     # Remove contents of current page
-     element.place_forget()
-     element1.place_forget()
-     
-     # Get input of age and name
-     get_name(window)
-
-
 def admin(element, element1, window):
      element.place_forget()
      element1.place_forget()
@@ -24,7 +15,11 @@ def admin(element, element1, window):
      heading = Label(window, text="Admin Page", font=(25))
      heading.place(x=495, y=15)
 
-def get_name(window):
+def questions(element, element1, window):
+     # Remove contents of current page
+     element.place_forget()
+     element1.place_forget()
+
      def fetch():
           # Authenticate Input
           if name_field.get() is not None and isint(age.get()):
@@ -53,33 +48,43 @@ def get_name(window):
      age = Entry(window, width=35, bd=3, font=(12))
      age.place(x=350, y=135)
 
+     # Initialize Variable to stroe the users sex
      sex = StringVar()
      sex.set("male")
-
+     
+     # Label for sex option
      sex_label = Label(window, text="Sex", font=(20))
      sex_label.place(x=495, y=170)
 
+     # Radio Button to choose Sex
      male = Radiobutton(window, text="Male", variable=sex, value="male")
      female = Radiobutton(window, text="Female", variable=sex, value="female")
 
+     # Place Radio Buttons In view
      male.place(x=400, y=190)
      female.place(x=400, y=210)
 
+     # Label For Race Option
      race_label = Label(window, text="Race", font=(20))
      race_label.place(x=495, y=240)
 
+     # Variable for race options
      race = StringVar()
      race.set("black")
 
+     # Radio buttons To choose race
      black = Radiobutton(window, text="Black", variable=race, value="black")
      white = Radiobutton(window, text="White", variable=race, value="white")
      asian = Radiobutton(window, text="Asian", variable=race, value="asian")
      other = Radiobutton(window, text="Other", variable=race, value="other")
 
+     # Place Race radio buttons in View
      black.place(x=400, y=260)
      white.place(x=400, y=280)
      asian.place(x=400, y=300)
      other.place(x=400, y=320)
+
+
 
      # submit Button
      submit = Button(window, text="Submit", fg="Black", bg="lightblue", command=fetch)
@@ -87,14 +92,13 @@ def get_name(window):
 
 def main():
      # create a GUI window
-     global window
      window = Tk()
 
      # set Window Title
      window.title("SculpturSurvey")
 
      # set the configuration of GUI window
-     window.geometry("1200x600")
+     window.geometry("1000x600")
 
      host = Button(window, text="Host", width=30, fg="Black", bg="lightblue", command=lambda: admin(host, survey, window))
      survey = Button(window, text="Survey", width=30, fg="Black", bg="lightblue", command=lambda: questions(host, survey, window))
