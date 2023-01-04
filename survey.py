@@ -16,6 +16,7 @@ def questions(element, element1, window):
      # Get input of age and name
      get_name(window)
 
+
 def admin(element, element1, window):
      element.place_forget()
      element1.place_forget()
@@ -29,11 +30,13 @@ def get_name(window):
           if name_field.get() is not None and isint(age.get()):
                print(name_field.get())
                print(age.get())
-               heading.place_forget()
-               name_field.place_forget()
-               age_label.place_forget()
-               age.place_forget()
-               submit.place_forget()
+               print(sex.get())
+               name_field.clear()
+               with open("raw_data.txt", 'a') as file:
+                    file.write(f"Name: {name_field.get()}\n")
+                    file.write(f"Age: {age.get()}\n")
+                    file.write(f"Sex: {sex.get()}\n")
+               a = True
           else:
                pass
 
@@ -53,12 +56,21 @@ def get_name(window):
      age = Entry(window, width=35, bd=3, font=(12))
      age.place(x=350, y=135)
 
+     sex = StringVar()
+
+     male = Radiobutton(window, text="Male", variable=sex, value="male")
+     female = Radiobutton(window, text="Female", variable=sex, value="female")
+
+     male.place(x=200, y=180)
+     female.place(x=200, y=200)
+
      # submit Button
      submit = Button(window, text="Submit", fg="Black", bg="lightblue", command=fetch)
-     submit.place(x=500, y=170)
+     submit.place(x=500, y=250)
 
 def main():
      # create a GUI window
+     global window
      window = Tk()
 
      # set Window Title
