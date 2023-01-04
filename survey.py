@@ -1,18 +1,20 @@
 # import kinter module
 from tkinter import *
 
-def questions(element, element1):
+def questions(element, element1, window):
      element.place_forget()
      element1.place_forget()
      
      # Get Name
-     heading = Label(window, text="Your Name", bg="white", font=(25))
+     heading = Label(window, text="Your Name", font=(25))
      heading.place(x=495, y=15)
 
-def admin(element, element1):
+def admin(element, element1, window):
      element.place_forget()
      element1.place_forget()
-     print("Hey")
+
+     heading = Label(window, text="Admin Page", font=(25))
+     heading.place(x=495, y=15)
 
 def forget(element):
      element.place_forget()
