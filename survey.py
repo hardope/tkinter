@@ -1,5 +1,6 @@
 # import kinter module
 from tkinter import *
+import sys
 
 def isint(a):
      try:
@@ -31,7 +32,7 @@ def questions(element, element1, window):
                     file.write(f"01: {question1.get()}\n")
                     file.write(f"02: {question2.get()}\n")
                     file.write(f"03: {question3.get()}\n")
-                    window.destroy.place()
+                    sys.exit()
           else:
                pass
 
@@ -49,7 +50,7 @@ def questions(element, element1, window):
 
      # Age Entry
      age = Entry(window, width=20, bd=3, font=(12))
-     age.place(x=400, y=150)
+     age.place(x=440, y=150)
 
      # Initialize Variable to stroe the users sex
      sex = StringVar()
@@ -158,7 +159,7 @@ def questions(element, element1, window):
 
      # submit Button
      submit = Button(window, text="Submit", fg="Black", bg="lightblue", command=fetch)
-     submit.place(x=500, y=700)
+     submit.place(x=500, y=550)
 
 def main():
      # create a GUI window
