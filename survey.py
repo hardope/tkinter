@@ -9,29 +9,44 @@ def isint(a):
      except:
           return False
 
-def admin(element, element1, window):
+def admin(heading, element, element2, element1, window):
      element.place_forget()
      element1.place_forget()
+     element2.place_forget()
+     heading.place_forget()
 
-     heading = Label(window, text="Admin Page", font=(25))
-     heading.place(x=495, y=15)
+     adminhead = Label(window, text="Admin Page", font=(25))
+     adminhead.place(x=495, y=15)
+     
+     with open("raw_data.txt", 'r') as file:
+          data = file.read()
+     data = data.split("\n")
+     data.pop(0)
+     data.pop()
+     head = "NAME    AGE   SEX     ETHNICITY    Q1    Q2    Q3"
+     thead = Label(window, text=head, font=(20))
+     thead.place(x=200, y=80)
+     new_data = []
+     y = 120
+     for i in data:
+          val = Label(window, text=i.replace(" : ", "    "), font=5)
+          val.place(x=200, y=y)
+          y+=40
+          new_data.append(i.replace(" : ", "    "))
+     print(new_data)
 
-def questions(element, element1, window):
+def questions(heading, element, element2, element1, window):
      # Remove contents of current page
+     heading.place_forget()
      element.place_forget()
      element1.place_forget()
+     element2.place_forget()
 
      def fetch():
           # Authenticate Input
           if name_field.get() is not None and isint(age.get()):
                with open("raw_data.txt", 'a') as file:
-                    file.write(f"Name: {name_field.get()}\n")
-                    file.write(f"Age: {age.get()}\n")
-                    file.write(f"Sex: {sex.get()}\n")
-                    file.write(f"Ethnicity: {ethnicity.get()}\n")
-                    file.write(f"01: {question1.get()}\n")
-                    file.write(f"02: {question2.get()}\n")
-                    file.write(f"03: {question3.get()}\n")
+                    file.write(f"{name_field.get()} : {age.get()} : {sex.get()} : {ethnicity.get()} : {question1.get()} : {question2.get()} : {question3.get()}\n")
                     sys.exit()
           else:
                pass
@@ -222,13 +237,25 @@ def main():
      )
 
      objframe = obj.frame
+          
+     def auth():
+          # Authenticate Input
+          if host.get() is not None and host.get() == "adminpassword":
+               admin(heading, host, survey, submit, objframe)
+          else:
+               pass
 
+     heading = Label(window, text="Log In To Admin Page", font=(25))
+     heading.place(x=410, y=90)
 
-     host = Button(window, text="Host", width=30, fg="Black", bg="lightblue", command=lambda: admin(host, survey, objframe))
-     survey = Button(window, text="Survey", width=30, fg="Black", bg="lightblue", command=lambda: questions(host, survey, objframe))
+     host = Entry(window, width=35, bd=3)
+     host.place(x=410, y=150)
 
-     host.place(x=300, y=50)
-     survey.place(x=600, y=50)
+     survey = Button(window, text="Take Survey", width=30, fg="Black", bg="lightblue", command=lambda: questions(heading, host, survey, submit, objframe))
+     survey.place(x=400, y=50)
+
+     submit = Button(window, text="Submit", fg="Black", bg="lightblue", command=auth)
+     submit.place(x=500, y=200)
 
      window.mainloop()
 

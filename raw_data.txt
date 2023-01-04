@@ -1,0 +1,3 @@
+Name : Age : Sex : Ethnicity : Question1 : Question2 : Question3
+Opeoluwa : 18 : male : black : strongly agree : agree : neutral
+Jeremiah : 19 : male : black : agree : agree : agree
