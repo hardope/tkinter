@@ -1,10 +1,19 @@
 # import kinter module
 from tkinter import *
 
+def isint(a):
+     try:
+          int(a)
+          return True
+     except:
+          return False
+
 def questions(element, element1, window):
+     # Remove contents of current page
      element.place_forget()
      element1.place_forget()
      
+     # Get input of age and name
      get_name(window)
 
 def admin(element, element1, window):
@@ -16,13 +25,18 @@ def admin(element, element1, window):
 
 def get_name(window):
      def fetch():
-          if name_field.get() is not None:
+          # Authenticate Input
+          if name_field.get() is not None and isint(age.get()):
                print(name_field.get())
+               print(age.get())
                heading.place_forget()
                name_field.place_forget()
+               age_label.place_forget()
+               age.place_forget()
                submit.place_forget()
           else:
                pass
+
      # Label For Name Entry
      heading = Label(window, text="Your Name", font=(25))
      heading.place(x=495, y=15)
@@ -31,8 +45,17 @@ def get_name(window):
      name_field = Entry(window, width=35, bd=3, font=(12))
      name_field.place(x=350, y=50)
 
+     # Age Label
+     age_label = Label(window, text="Your Age", font=(25))
+     age_label.place(x=495, y=100)
+
+     # Age Entry
+     age = Entry(window, width=35, bd=3, font=(12))
+     age.place(x=350, y=135)
+
+     # submit Button
      submit = Button(window, text="Submit", fg="Black", bg="lightblue", command=fetch)
-     submit.place(x=500, y=100)
+     submit.place(x=500, y=170)
 
 def main():
      # create a GUI window
