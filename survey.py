@@ -28,20 +28,17 @@ def get_name(window):
      def fetch():
           # Authenticate Input
           if name_field.get() is not None and isint(age.get()):
-               print(name_field.get())
-               print(age.get())
-               print(sex.get())
-               name_field.clear()
                with open("raw_data.txt", 'a') as file:
                     file.write(f"Name: {name_field.get()}\n")
                     file.write(f"Age: {age.get()}\n")
                     file.write(f"Sex: {sex.get()}\n")
+                    file.write(f"Race: {race.get()}\n")
                a = True
           else:
                pass
 
      # Label For Name Entry
-     heading = Label(window, text="Your Name", font=(25))
+     heading = Label(window, text="Your Name", font=(20))
      heading.place(x=495, y=15)
 
      # Name Entry
@@ -49,7 +46,7 @@ def get_name(window):
      name_field.place(x=350, y=50)
 
      # Age Label
-     age_label = Label(window, text="Your Age", font=(25))
+     age_label = Label(window, text="Your Age", font=(20))
      age_label.place(x=495, y=100)
 
      # Age Entry
@@ -57,16 +54,36 @@ def get_name(window):
      age.place(x=350, y=135)
 
      sex = StringVar()
+     sex.set("male")
+
+     sex_label = Label(window, text="Sex", font=(20))
+     sex_label.place(x=495, y=170)
 
      male = Radiobutton(window, text="Male", variable=sex, value="male")
      female = Radiobutton(window, text="Female", variable=sex, value="female")
 
-     male.place(x=200, y=180)
-     female.place(x=200, y=200)
+     male.place(x=400, y=190)
+     female.place(x=400, y=210)
+
+     race_label = Label(window, text="Race", font=(20))
+     race_label.place(x=495, y=240)
+
+     race = StringVar()
+     race.set("black")
+
+     black = Radiobutton(window, text="Black", variable=race, value="black")
+     white = Radiobutton(window, text="White", variable=race, value="white")
+     asian = Radiobutton(window, text="Asian", variable=race, value="asian")
+     other = Radiobutton(window, text="Other", variable=race, value="other")
+
+     black.place(x=400, y=260)
+     white.place(x=400, y=280)
+     asian.place(x=400, y=300)
+     other.place(x=400, y=320)
 
      # submit Button
      submit = Button(window, text="Submit", fg="Black", bg="lightblue", command=fetch)
-     submit.place(x=500, y=250)
+     submit.place(x=500, y=500)
 
 def main():
      # create a GUI window
