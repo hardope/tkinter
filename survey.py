@@ -237,6 +237,10 @@ def main():
      )
 
      objframe = obj.frame
+     bgimg= tk.PhotoImage(file = "Tulips.ppm")
+     
+     limg= Label(objframe, i=bgimg)
+     limg.pack()
           
      def auth():
           # Authenticate Input
