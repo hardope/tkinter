@@ -237,7 +237,7 @@ def main():
      )
 
      objframe = obj.frame
-     bgimg= tk.PhotoImage(file = "background.jpg")
+     bgimg= PhotoImage(file = "background.jpg")
      
      limg= Label(objframe, i=bgimg)
      limg.pack()
