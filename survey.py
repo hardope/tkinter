@@ -237,10 +237,6 @@ def main():
      )
 
      objframe = obj.frame
-     bgimg= PhotoImage(file = "background.jpg")
-     
-     limg= Label(objframe, i=bgimg)
-     limg.pack()
           
      def auth():
           # Authenticate Input
